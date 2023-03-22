@@ -6,11 +6,21 @@ Expected Output
 
 
 Instruction
-Create a function named instructorWithLongestName that will receive an array of instructor objects, and return the object that has the longest name. If there are two instructors with the longest name, return the first one.
+Create a function named instructorWithLongestName that will receive an array of instructor objects, and return the object that has the longest name. 
+If there are two instructors with the longest name, return the first one.
 */
 
 const instructorWithLongestName = function (instructors) {
-  // Put your solution here
+  const result = instructors[0];
+  instructors.forEach(element => {
+    let tempName = element.name;
+    let tempCourse = element.course;
+    if (tempName.length > result.name.length) {
+      result.name = tempName;
+      result.course = tempCourse;
+    }
+  });
+  return result;
 };
 
 console.log(
