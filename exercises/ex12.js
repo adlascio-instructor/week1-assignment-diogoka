@@ -25,7 +25,23 @@ This one is a doozy! We might want to start by creating a helper function called
 */
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
-  // Code here!
+  let result = "";
+  recipes.forEach(recipe => {
+    let bakeA = false;
+    let bakeB = false;
+    recipe.ingredients.forEach(ingredient => {
+      if (bakeryA.includes(ingredient)) {
+        bakeA = true;
+      }
+      if (bakeryB.includes(ingredient)) {
+        bakeB = true;
+      }
+    })
+    if (bakeA && bakeB) {
+      result = recipe.name;
+    }
+  });
+  return result;
 };
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
