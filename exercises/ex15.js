@@ -9,7 +9,16 @@ Create a function named organizeInstructors that will receive an array of instru
 */
 
 const organizeInstructors = function (instructors) {
-  // Put your solution here
+  let organized = {};
+  for (let i = 0; i < instructors.length; i++) {
+    if (organized[instructors[i].course]) {
+      organized[instructors[i].course].push(instructors[i].name);
+    } else {
+      organized[instructors[i].course] = [instructors[i].name];
+    }
+  }
+
+  return organized;
 };
 
 console.log(
@@ -20,13 +29,13 @@ console.log(
     { name: "Donald", course: "Web" },
   ])
 ); // { iOS: ["Samuel"], Web: ["Victoria", "Karim", "Donald"]}
-console.log(
-  organizeInstructors([
-    { name: "Brendan", course: "Blockchain" },
-    { name: "David", course: "Web" },
-    { name: "Martha", course: "iOS" },
-    { name: "Carlos", course: "Web" },
-  ])
-); //{ Blockchain: ["Brendan"], Web: ["David", "Carlos"], iOS: ["Martha"]}
+// console.log(
+//   organizeInstructors([
+//     { name: "Brendan", course: "Blockchain" },
+//     { name: "David", course: "Web" },
+//     { name: "Martha", course: "iOS" },
+//     { name: "Carlos", course: "Web" },
+//   ])
+// ); //{ Blockchain: ["Brendan"], Web: ["David", "Carlos"], iOS: ["Martha"]}
 
 module.exports = organizeInstructors;
