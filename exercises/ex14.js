@@ -7,7 +7,8 @@ We will be given two numbers, the total of a transaction, and the amount of cash
 Our function calculateChange should return an object which describes the total amount of change for the cashier to give back. Although pennies are not used in circulation, we will still calculate the amount of pennies to give back.
 
 Instruction
-Create a function named calculateChange that takes in a total amount of a bill and the total cash given to pay that bill. Return a new object that describes the total amount of change for the cashier to give back. Omit any types of change that you shouldn't give back, i.e. if you don't give back a twenty dollar bill, don't include it in the results.
+Create a function named calculateChange that takes in a total amount of a bill and the total cash given to pay that bill. Return a new object that describes the total amount of change for the cashier to give back. 
+Omit any types of change that you shouldn't give back, i.e. if you don't give back a twenty dollar bill, don't include it in the results.
 
 Valid denominations are as follows:
 
@@ -23,7 +24,28 @@ Penny (1¢)
 */
 
 const calculateChange = function (total, cash) {
-  // Your code here
+  let change = cash - total;
+  let changeObj = {};
+  let denominations = {
+    twentyDollar: 2000,
+    tenDollar: 1000,
+    fiveDollar: 500,
+    toonie: 200,
+    loonie: 100,
+    quarter: 25,
+    dime: 10,
+    nickel: 5,
+    penny: 1,
+  };
+
+  for (let key in denominations) {
+    if (change >= denominations[key]) {
+      changeObj[key] = Math.floor(change / denominations[key]);
+      change = change % denominations[key];
+    }
+  }
+
+  return changeObj;
 };
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
